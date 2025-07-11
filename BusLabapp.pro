@@ -1,9 +1,16 @@
-QT += core gui widgets
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += widgets testlib
+
 TARGET = BusApp
 TEMPLATE = app
+
 SOURCES += main.cpp \
            mainwindow.cpp
+
 HEADERS += mainwindow.h
 FORMS += mainwindow.ui
-RESOURCES += resources.qrc
+
+test {
+    SOURCES += test_mainwindow.cpp
+    DEFINES += RUN_TESTS
+    CONFIG += console
+}

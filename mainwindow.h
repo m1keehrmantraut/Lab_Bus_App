@@ -3,15 +3,8 @@
 
 #include <QMainWindow>
 #include <QVector>
-#include <QTableWidget>
-#include <QListWidget>
-#include <QComboBox>
-#include <QLabel>
-#include <QLineEdit>
-#include <QPushButton>
+#include <QMainWindow>
 #include <QKeyEvent>
-#include <QContextMenuEvent>
-#include <QDate>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,10 +18,14 @@ struct Bus {
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
-
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+#ifdef RUN_TESTS
+    friend class TestMainWindow;
+    void loadFromFile(const QString& filename);
+#endif
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
@@ -49,4 +46,5 @@ private:
     void quickSort(int low, int high, bool ascending);
     int partition(int low, int high, bool ascending);
 };
-#endif // MAINWINDOW_H
+
+#endif
